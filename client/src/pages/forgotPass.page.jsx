@@ -17,7 +17,7 @@ export default function ForgotPassword() {
 
     async function submit(event) {
         event.preventDefault();
-        await fetch('http://localhost:2003/user/forgot-password', {
+        const response = await fetch('http://localhost:2003/user/forgot-password', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -27,6 +27,12 @@ export default function ForgotPassword() {
             }),
             credentials: 'include'
         });
+        if (response.status === 429) {
+            alert("OTP already sent");
+        } else if (response.status === 404) {
+            alert("Email not found");
+        }
+
         navigate('/reset-password');
     }
 

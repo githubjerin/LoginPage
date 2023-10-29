@@ -79,29 +79,29 @@ router.post('/forgot-password', async (req, res) => {
     const otpDetail = await otp.findOne({ email: req.body.email });
     if(!otpDetail){
         const user_detail = await user.findOne({ email: req.body.email });
-    if (user_detail) {        
-        const token = createToken({ 
-            email: user_detail.email,
-            hash: await bcrypt.hash(user_detail.email, 10)
-        });
-        const otp_num = generateOTP();
-        const newOtp = await otp.create({
-            email: user_detail.email,
-            otp: otp_num,
-            token: token
-        });
-        newOtp.save().then(() => {
-            sendMail(req.body.email, otp_num)            
-            res.status(200).json({ message: "Email sent" });
-        });
-
-        } else {
-            res.status(400).json({ 
-                error: "User not found"
+        if (user_detail) {        
+            const token = createToken({ 
+                email: user_detail.email,
+                hash: await bcrypt.hash(user_detail.email, 10)
             });
-        }
+            const otp_num = generateOTP();
+            const newOtp = await otp.create({
+                email: user_detail.email,
+                otp: otp_num,
+                token: token
+            });
+            newOtp.save().then(() => {
+                sendMail(req.body.email, otp_num)            
+                res.status(200).json({ message: "Email sent" });
+            });
+
+            } else {
+                res.status(404).json({ 
+                    error: "User not found"
+                });
+            }
     } else {
-        res.status(400).json({ 
+        res.status(429).json({ 
             error: "OTP already sent"
         });
     }
