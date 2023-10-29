@@ -10,7 +10,7 @@ import Landing from './pages/landing.page.jsx';
 import Signup from './pages/signup.page.jsx';
 import ForgotPassword from './pages/forgotPass.page.jsx';
 import ResetPassword from './pages/resetPass.page.jsx';
-import Welcome from './pages/welcome.page.jsx';
+import WelcomePage from "./pages/welcomeUser.page.jsx";
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
           <Route path="/signup" element={ <Signup navigate={useNavigate}/> }/>
           <Route path="/forgot-password" element={ <ForgotPassword navigate={useNavigate}/> }/>
           <Route path="/reset-password" element={ <ResetPassword navigate={useNavigate}/> }/>
-          <Route path="/welcome" element={ <Welcome navigate={useNavigate}/> }/>
+          <Route path="/welcomepage" element={ <WelcomePage navigate={useNavigate}/> }/>
         </Routes>
     </Router>
   );

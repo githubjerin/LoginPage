@@ -44,7 +44,7 @@ export default function Landing() {
                 credentials: 'include'
             });
             if (response.status === 200) {
-                navigate('/welcome');
+                navigate('/welcomepage');
             } else {
                 alert('Invalid email or password');
             }

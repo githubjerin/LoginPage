@@ -11,3 +11,7 @@ p { color: black; }
     background-color: #3ABAEB !important;
     border-color: #3ABAEB!important;
 }
+
+.bg-overlay {
+    background: rgba(0,0,0,0);
+}
